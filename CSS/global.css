@@ -1,0 +1,126 @@
+.contenedor{
+  box-sizing:border-box;
+  background-color: black;
+  font-size: 12px;
+  color: #00ffaa;
+}
+.linea{
+  width:100%;
+}
+
+.encabezados{
+  color:#001100;
+  background-color: #ffaa00;
+}
+
+/*Signin*/
+.logo{
+  color:#ffcc00;
+  transform: translate(-1.9rem,5rem);
+}
+.background{
+  box-sizing: border-box;
+  width: 100%;
+  height: 80rem;
+  background-color: #2a0022;
+}
+.Cuadro{
+  box-sizing: border-box;
+  transform: translate(10%,50%); 
+  width:80%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.box_text{
+  width:60%;
+  padding-bottom: 3px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background-color:transparent;
+  color:white;
+  border:none; 
+  border-bottom: 1px solid white;
+  border-radius: 20px;
+}
+.box_button{
+  width:100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-top:10%;
+  border-color: #ffaa11;
+  margin-bottom:20px;
+  color:#ffddff;
+}
+.box_button:hover{
+  background-color: #ffaa11;
+  color:#000000;
+  border-color:#ffffff;
+}
+
+.Opciones{
+  padding-bottom: 20px;
+  text-align: center;
+}
+.links{
+  width:100%;
+  color:#00ff00;
+  font-size:14px;
+  text-decoration: none;
+  border:none;
+}
+.links:hover{
+  color:#00ffee;
+}
+/*Login*/
+.formulario{
+  box-sizing: border-box;
+  text-align: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+.designsubform{
+  text-align: left;
+}
+.tag_label{
+  font-family: 'Roboto Slab', serif;
+  font-size: 12px;
+  background-color: transparent;
+}
+.box_text_registro{
+  width:100%;
+  padding-bottom: 3px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background-color:transparent;
+  color:white;
+  border:none; 
+  border-bottom: 1px solid white;
+  border-radius: 20px;
+}
+.alerta{
+  background-color: #ee0033;
+  width: 100%;
+  height: 30px;
+  color:black;
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  transform: translate(0,100%);
+}
+.alertaP{
+  background-color: #F1C40F;
+  width: 100%;
+  height: 30px;
+  color:black;
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  transform: translate(0,100%);
+}
+/*Recuperar*/
+.fondo{
+  background-color: black;
+}

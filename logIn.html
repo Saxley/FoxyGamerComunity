@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@233&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/global.css">
+  <title>Registrate</title>
+</head>
+<body id="fondo" class="fondo">
+  <div id="contenedor" class="contenedor">
+    <form method="POST" action="php/add.php" class="formulario">
+      <fieldset>
+        <legend>Registro</legend>
+        <div class="designsubform">
+        <label class="tag_label">Nombre:</label><br />
+        <input id="nombre" class="box_text_registro" name="nombre" type="text" /><br />
+
+        <label class="tag_label">Correo electronico:</label><br />
+        <input id="correo" class="box_text_registro" name="correo" type="email" /><br />
+
+        <label class="tag_label">Contraseña:</label><br />
+        <input id="contraseña"class="box_text_registro" name="contraseña" type="password" />
+        <br />
+        <input id="contraseñaVerify" class="box_text_registro" name="contraseñaVerify" type="password" />
+        </div>
+        <input class="box_button" type="submit" id="button" value="Registrarme"/>
+      </fieldset>
+    </form>
+    <script type="text/javascript" src="JS/logIn.js"></script>
+  </div>
+</body>
+</html>

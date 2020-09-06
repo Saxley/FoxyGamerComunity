@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSS/global.css" />
+  <title>Iniciar Sesion</title>
+</head>
+
+<body id="fondo" class="fondo">
+  
+    <center>
+      <pre class="logo">
+        /\_/\
+        \   /
+        \_/
+      </pre>
+    </center>
+    
+    <div class="Cuadro">
+      <div class="contenedor">
+        <header>
+          <center>
+            <h1 class="encabezados">FOXYGAMER</h1></center>
+        </header>
+        
+        <center>
+          <form method="POST" action="php/identify.php">
+            <input name="user" class="box_text" type="text" id="user" />
+            
+            <input name="password" class="box_text" type="password" id="password" /><br />
+            
+            <input class="box_button" type="submit" id="button" value="INICIAR SESION" />
+          </form>
+        </center><br />
+        
+        <footer class="Opciones">
+          <code>
+            <a class="links" href="logIn.html">Registrate</a><br />
+            <br />
+            <a class="links" href="recuperarCuenta.html">¿Olvidaste tu contaseña?</a>
+          </code>
+        </footer>
+        
+      </div>
+    </div>
+
+  <script type="text/javaScript" src="JS/signIn.js"></script>
+</body>
+</html>

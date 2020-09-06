@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSS/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@233&display=swap" rel="stylesheet">
+  <title>Recuperar tu contraseña</title>
+</head>
+<body class="fondo">
+    <center>
+      <pre class="logo">
+        /\_/\
+        \   /
+        \_/
+      </pre>
+    </center>
+  <div id="contenedor" class="contenedor">
+    <form method="post" action="php/recuperar.php" class="formulario">
+      <fieldset>
+        <legend>Recuperar cuenta</legend>
+        <div class="designsubform">
+          <br />
+          <label class="tag_label">Danos tu correo, numero o nickname</label><br />
+          <input class="box_text_registro" type="text" name="user" /><br />
+          <input class="box_button" type="submit" name="recuperar" />
+        </div>
+        <footer class="Opciones">
+          <code>
+          <a class="links" href="php/preguntaSeguridad.php">No recuerdo ninguno</a><br />
+          <br />
+          <a class="links" href="php/llaveCuenta.php">Tengo llave de recuperación</a>
+        </code>
+      </footer>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>
