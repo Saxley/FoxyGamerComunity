@@ -38,9 +38,9 @@ function campos() {
     message.className = "alertaP";
     message.innerHTML = "Las contraseñas no coinciden";
     cuerpo.style.backgroundColor = "#F1C40F";
-  }/*else{
-    scriptPHP(true);
-  }*/
+  }else{
+    btn_registro.type="submit";
+  }
 }
 
 /* leer y mejorar
