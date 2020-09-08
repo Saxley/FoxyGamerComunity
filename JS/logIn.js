@@ -24,11 +24,11 @@ function campos() {
 
   contain.before(message);
   if (alertaMessage) {
-    cuerpo.removeChild(cuerpo.children[1]);
-    cuerpo.style.backgroundColor="black";
+    cuerpo.removeChild(cuerpo.children[0]);
+    cuerpo.style.backgroundColor = "black";
     alertaMessage = false;
   }
-  if (nombre.value == "" || correo.value=="" || contraseña.value==""|| confirmar.value == "" && alertaMessage===false) {
+  if (nombre.value == "" || correo.value == "" || contraseña.value == "" || confirmar.value == "" && alertaMessage === false) {
     alertaMessage = true;
     message.className = "alerta";
     message.innerHTML = "Todos los campos son obligatorios";
@@ -38,5 +38,22 @@ function campos() {
     message.className = "alertaP";
     message.innerHTML = "Las contraseñas no coinciden";
     cuerpo.style.backgroundColor = "#F1C40F";
-  }
+  }/*else{
+    scriptPHP(true);
+  }*/
 }
+
+/* leer y mejorar
+function scriptPHP(agregar) {
+    let form=document.getElementById("form");
+    let phpScript = document.createElement('script');
+  if (agregar) {
+    btn_registro.type="submit";
+    cuerpo.appendChild(phpScript);
+    phpScript.type = "text/php";
+    phpScript.src = "php/add.php";
+    form.action="php/add.php"
+  } else {
+    alert('fallo el registro');
+  }
+}*/

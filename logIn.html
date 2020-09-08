@@ -9,7 +9,14 @@
 </head>
 <body id="fondo" class="fondo">
   <div id="contenedor" class="contenedor">
-    <form method="POST" action="php/add.php" class="formulario">
+    <!--IMPORTANTE NAMES:
+        nombre............'nombre'
+        coreeo............'correo'
+        contraseña........'contraseña'
+        verificacion......'contraseñaVerify'
+        boton.............'logIn'
+    -->
+    <form method="POST" class="formulario" id="form" action="php/add.php">
       <fieldset>
         <legend>Registro</legend>
         <div class="designsubform">
@@ -24,7 +31,7 @@
         <br />
         <input id="contraseñaVerify" class="box_text_registro" name="contraseñaVerify" type="password" />
         </div>
-        <input class="box_button" type="submit" id="button" value="Registrarme"/>
+        <input class="box_button" type="submit" name='logIn' id="button" value="Registrarme"/>
       </fieldset>
     </form>
     <script type="text/javascript" src="JS/logIn.js"></script>
