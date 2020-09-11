@@ -98,6 +98,10 @@
   border-bottom: 1px solid white;
   border-radius: 20px;
 }
+.box_text_registro:focus{
+  background-color:transparent;
+  color:white;
+}
 .alerta{
   background-color: #ee0033;
   width: 100%;

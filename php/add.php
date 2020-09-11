@@ -3,11 +3,14 @@ require 'intentoConexion.php';
 
 $email = $_POST['correo'];
 $password = $_POST['contraseñaVerify'];
+$llave=$_POST['llave'];
 
+$consulta = "INSERT INTO datosInicio(id,nick,password) VALUES ('0','$email','$password') ";
 
-$consulta = "INSERT INTO datosInicio(nick,password) VALUES ('$email','$password') ";
+$consultaEmergencia = "INSERT INTO llaves(llaveEmergencia) VALUES ('$llave')";
 
 $resultado = mysqli_query($conn, $consulta);
+$resultadoEmergencia = mysqli_query($conn, $consultaEmergencia);
 /*
 NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS, REVISAR QUE EL USUARIO POR REGISTRAR NO EXISTA YA EN MI BASE DE DATOS.
 
