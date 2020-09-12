@@ -69,7 +69,7 @@ function campos() {
     eLlave.hidden="disable";
     eLlave.name="llave";
     eLlave.value=llave;
-    form.append(eLlave);
+    form.appendChild(eLlave);
     btn_registro.type = "submit";
   }
 }

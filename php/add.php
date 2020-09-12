@@ -3,14 +3,20 @@ require 'intentoConexion.php';
 
 $email = $_POST['correo'];
 $password = $_POST['contraseñaVerify'];
-$llave=$_POST['llave'];
+$llave = $_POST['llave'];
 
-$consulta = "INSERT INTO datosInicio(id,nick,password) VALUES ('0','$email','$password') ";
-
-$consultaEmergencia = "INSERT INTO llaves(llaveEmergencia) VALUES ('$llave')";
+//$consulta = "INSERT INTO datosInicio(nick,password) VALUES ('$email','$password') ";
+$consulta ="INSERT INTO datosInicio(nick,password) VALUES ('$email','$password')";
 
 $resultado = mysqli_query($conn, $consulta);
-$resultadoEmergencia = mysqli_query($conn, $consultaEmergencia);
+
+if($resultado){
+$consulta ="INSERT INTO llave_emergencia(llave,id_llave,id_user) VALUES ('$llave','0','0')";
+$resultado = mysqli_query($conn, $consulta);
+
+}else{
+  echo 'no se registro nada';
+}
 /*
 NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS, REVISAR QUE EL USUARIO POR REGISTRAR NO EXISTA YA EN MI BASE DE DATOS.
 
@@ -32,9 +38,9 @@ NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS,
 +++0bjetivos profesionales.
 +++Pasion y dedicacion.
 
-###Redireccionar a el home ♡♡Dar la bienvenida de ingreso♡♡. 
+###Redireccionar a el home ♡♡Dar la bienvenida de ingreso♡♡.
 ###Dar opcion de ver Guia de entorno.
-###Incentivar a hacer su primera publicacion y/o actividad 
+###Incentivar a hacer su primera publicacion y/o actividad
 
 ‐--------‐-‐-------------------------------
 ESTE PEDASO DE CODIGO FUE COMENTADO PORQUE VERIFICAR QUE LOS CAMPOS ESTEN LLENOS, ES REALIZADO POR JAVASCRIPT Y DE IGUAL FORMA QUE ESTEN SINCRONIZADAS LAS CONTRASEÑAS.
