@@ -1,17 +1,19 @@
+//VARIABLES QUE SE USAN PARA NOTIFICAR Y O ALMACENAR VALORES TEMP
 let alertaMessage = false;
 let llave;
 let notificar = false;
 let notificarP = false;
+
+//LLAMADA A ELEMENTOS
 nombre = document.getElementById("nombre");
 correo = document.getElementById("correo");
 contraseña = document.getElementById("contraseña");
 confirmar = document.getElementById("contraseñaVerify");
 btn_registro = document.getElementById("button");
-
 btn_registro.addEventListener("click", campos);
 
 holder();
-
+//FUNCION QUE SIRVE PARA ESCRIBIR EN EL HOLDER LA CUAL DEBE SER LLAMADA DESDE EL INICIO
 function holder() {
   contraseña.placeholder = "Introduce tu contraseña";
   nombre.placeholder = "Introduce tu nombre";
@@ -19,27 +21,31 @@ function holder() {
   correo.placeholder = "Introduce tu nombre";
 }
 
+//FUNCION QUE DETECTA EL CLICK EN EL BOTON Y EVALUA LOS CAMPOS DE TEXTOS, LOS CUALES QUIEREN ENVIAR INFORMACIÓN.
 function campos() {
+  //ELEMENTOS QUE USARA LA FUNCION DEL DOM.
   let contain = document.getElementById('contenedor');
   let cuerpo = document.getElementById("fondo");
   let form = document.getElementById("form");
   let message = document.createElement('p');
-
+//ELEMENTOS QUE AGREGAREMOS AL DOM.
   contain.before(message);
 
+//EVALUA UN VALOR BOLEANO Y ELIMINA EL HIJO DEL DOM QUE SE INDICA
   if (alertaMessage) {
     cuerpo.removeChild(cuerpo.children[0]);
     cuerpo.style.backgroundColor = "black";
     alertaMessage = false;
   }
-
+//ALAMACEN DE LA INFORMACION DE LOS INPUTS
   let n$mbre = nombre.value;
   let c$rreo = correo.value;
   let c$ntrasena = contraseña.value;
   let c$nfirmar = confirmar.value;
-
+//FUNCION QUE ESTA MAS ABAJO.
   analisisCampo(n$mbre, c$rreo, c$ntrasena, c$nfirmar);
 
+//AQUI SE EVALUAN LOS CAMPOS, SE VERIFICA QUE ESTEN LLENOS, COINCIDAN, SEAN CORRECTOS, EN CASO DE NO CUMPLIR ALGO, NOTIFICAN AL USUARIO QUE ALGO NO ESTA BIEN EN SU REGISTRO.
   if (nombre.value == "" || correo.value == "" || contraseña.value == "" || confirmar.value == "" && alertaMessage === false) {
     alertaMessage = true;
     message.className = "alerta";
@@ -51,7 +57,6 @@ function campos() {
     message.innerHTML = "Las contraseñas no coinciden";
     cuerpo.style.backgroundColor = "#F1C40F";
   } else if (notificar) {
-
     alertaMessage = true;
     message.className = "alertaP";
     cuerpo.style.backgroundColor = "#F1C40F";
@@ -74,6 +79,7 @@ function campos() {
   }
 }
 
+//FUNCION QUE ANALISA LETRA POR LETRA PARA EVITAR QUE ENVIEN CODIGO AL SERVIDOR DESDE EL EQUUPO DEL USUARIO.
 function analisisCampo(a, b, c, d) {
   let encrypt;
   let arreglos = [];
@@ -131,6 +137,7 @@ function analisisCampo(a, b, c, d) {
           notificarP = true;
         }
       }
+      //CREACION DE LA LLAVE DE SEGURIDAD.
       if (i == 3 || i == 2 && notificar === false) {
         analisis = analisis.charCodeAt();
         analisis = analisis.toString(2);

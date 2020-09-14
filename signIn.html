@@ -9,6 +9,7 @@
 
 <body id="fondo" class="fondo">
   
+  <!-- ESTO SOLAMEMTE ES EL LOGO Y EL TITULO DE NUESTRA PAGINA-->
     <center>
       <pre class="logo">
         /\_/\
@@ -24,16 +25,18 @@
             <h1 class="encabezados">FOXYGAMER</h1></center>
         </header>
         
+        <!--FORMULARIO PARA INICIAR SESION QUE NOS MANDA A UNA PAGINA DE VALIDACION Y ESTA NOS REDIRECCIONA AQUÍ MISMO O AL INDEX PRINCIPAL-->
         <center>
-          <form method="POST" action="php/identify.php">
+          <form method="POST" action="php/iniciarSesion.php">
+            <!--CAMPO PARA CORREO ELECTRONICO-->
             <input name="user" class="box_text" type="text" id="user" />
-            
+            <!--CAMPO PARA LA CONTRASEÑA-->
             <input name="password" class="box_text" type="password" id="password" /><br />
             
-            <input class="box_button" type="submit" id="button" value="INICIAR SESION" />
+            <input name="button" class="box_button" type="button" id="button" value="INICIAR SESION" />
           </form>
         </center><br />
-        
+        <!--ENLACES A OPCIONES DE REGISTRO Y RECUPERACION -->
         <footer class="Opciones">
           <code>
             <a class="links" href="logIn.html">Registrate</a><br />

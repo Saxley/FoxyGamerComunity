@@ -1,22 +1,46 @@
 <?php
-require 'intentoConexion.php';
+include_once 'clases/claseRegistro.php';
 
+$nuevoRegistro=new Registros();
 $email = $_POST['correo'];
-$password = $_POST['contraseñaVerify'];
+$password =$_POST['contraseñaVerify'];
 $llave = $_POST['llave'];
 
-//$consulta = "INSERT INTO datosInicio(nick,password) VALUES ('$email','$password') ";
-$consulta ="INSERT INTO datosInicio(nick,password) VALUES ('$email','$password')";
+echo $nuevoRegistro -> newRegistro($email,$password,$llave);
 
-$resultado = mysqli_query($conn, $consulta);
+/*
+require 'intentoConexion.php';
+include 'identify.php';
 
-if($resultado){
-$consulta ="INSERT INTO llave_emergencia(llave,id_llave,id_user) VALUES ('$llave','0','0')";
-$resultado = mysqli_query($conn, $consulta);
+$email = $_POST['correo'];
+$password = sha1($_POST['contraseñaVerify']);
+$llave = sha1($_POST['llave']);
 
-}else{
-  echo 'no se registro nada';
+//FUNCION TRAIDA DE identify.php,Nos ayuda a saber si los usuarios ya estan registrados en nuestra databases.
+mirar($conn, $email);
+
+//Si el resultado de mirar es verdad se Registrara al usuario, si es false, se le notificara que ese correo ya esta siendo usado.
+if ($r) {
+  //echo ' BIENVENIDO';
+
+  $registro = "INSERT INTO datosInicio(nick,password) VALUES ('$email','$password')";
+
+  $resultado = mysqli_query($conn, $registro);
+
+  if ($resultado) {
+    
+     mirar($conn, $email);
+     echo $data;
+    $registro = "INSERT INTO llave_emergencia (llave, id_llave, id_user) VALUES ('$llave','0','$data')";
+    $resultado = mysqli_query($conn, $registro);
+
+  } else {
+    echo 'OCURRIO UN ERROR CON LA CREACION DE TU LLAVE';
+  }
+} else {
+  echo ' ESTE CORREO YA ESTA REGISTRADO';
 }
+mysqli_close($conn);*/
 /*
 NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS, REVISAR QUE EL USUARIO POR REGISTRAR NO EXISTA YA EN MI BASE DE DATOS.
 
@@ -41,31 +65,5 @@ NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS,
 ###Redireccionar a el home ♡♡Dar la bienvenida de ingreso♡♡.
 ###Dar opcion de ver Guia de entorno.
 ###Incentivar a hacer su primera publicacion y/o actividad
-
-‐--------‐-‐-------------------------------
-ESTE PEDASO DE CODIGO FUE COMENTADO PORQUE VERIFICAR QUE LOS CAMPOS ESTEN LLENOS, ES REALIZADO POR JAVASCRIPT Y DE IGUAL FORMA QUE ESTEN SINCRONIZADAS LAS CONTRASEÑAS.
-if (!$resultado) {
-  ?>
-  <h3 class="alerta">Error al registrarse</h3>
-  <?php
-} else {
-  ?>
-  <h3 class="alertaR">BIENVENIDO A NUESTRA COMUNIDAD</h3>
-  <style>
-    .alertaR {
-      background-color: #55ff55;
-      width: 100%;
-      height: 30px;
-      color: black;
-      font-family: 'Roboto Slab', serif;
-      font-size: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
-  </style>
-  <?php
-}
 */
-mysqli_close($conn);
-
 ?>
