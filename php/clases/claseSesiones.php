@@ -3,7 +3,6 @@
 
 class Sesiones{
   
-
   public function __construct(){
     session_start();
   }
@@ -13,7 +12,7 @@ class Sesiones{
   }
   
   public function getCurrentUser(){
-  pureturn $_SESSION['user'];
+    return $_SESSION['user'];
   }
   
   public function closeSession(){

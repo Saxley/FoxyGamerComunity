@@ -1,5 +1,5 @@
 <?php
- include 'php/diccionario/MISURL.php';
- include 're.php';
- tiempo(false);
+ include_once 're.php';
+ /*Este objeto proviene de re.php el cual nos redirige a nuestras paginas*/
+ $vistas=new viewHTML();
 ?>
