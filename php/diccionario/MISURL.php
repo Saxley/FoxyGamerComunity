@@ -11,4 +11,7 @@ $URL[3]= 'http://localhost:8080/recuperarCuenta.html';
 $URL[4]= 'http://localhost:8080/logIn.html';
 
 $URL[5]='http://localhost:8080/re.php';
+
+/*$myJSON=json_encode($URL);
+print_r($myJSON);*/
 ?>
