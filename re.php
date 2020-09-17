@@ -29,11 +29,12 @@ class viewHTML {
 
 }
 
+/*JS:
+--Esta clase nos devuelve el nombre de usuario que este en uso en forma de arreglo, esto para que pueda ser utilizado posteriormente. Para que devuelva el arreglo se debe llamar a su funcion json()*/
 class JS {
-  /**/
+  /*json():
+  --Devuelve un arreglo asociatovo del metodo getCurrentUser() del objeto Sesiones() el cual nos devuelve el nombre del usuario con una sesion activa*/
   public function json() {
-    header('Content-Type:application/json;charset=utf-8');
-
     include_once('php/clases/claseSesiones.php');
     $sesion = new Sesiones();
     $online = $sesion->getCurrentUser();

@@ -149,18 +149,3 @@ function analisisCampo(a, b, c, d) {
     }
   }
 }
-
-/* leer y mejorar
-function scriptPHP(agregar) {
-    let form=document.getElementById("form");
-    let phpScript = document.createElement('script');
-  if (agregar) {
-    btn_registro.type="submit";
-    cuerpo.appendChild(phpScript);
-    phpScript.type = "text/php";
-    phpScript.src = "php/add.php";
-    form.action="php/add.php"
-  } else {
-    alert('fallo el registro');
-  }
-}*/
