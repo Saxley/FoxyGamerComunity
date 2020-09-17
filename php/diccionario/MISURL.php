@@ -12,6 +12,5 @@ $URL[4]= 'http://localhost:8080/logIn.html';
 
 $URL[5]='http://localhost:8080/re.php';
 
-/*$myJSON=json_encode($URL);
-print_r($myJSON);*/
+$URL[6]='http://localhost:8080/Error.html';
 ?>

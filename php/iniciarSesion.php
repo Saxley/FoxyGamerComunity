@@ -21,8 +21,14 @@ $session;
 
 --Despues creamos nuestro objeto $vistas cual nos redirigira(para mas info sobre el objeto revisar re.php)*/
 if($start){
+  if(empty($nuevaSesion->getCurrentUser())){
   $nuevaSesion->setCurrentUser($email);
   $session=$nuevaSesion->getCurrentUser();
-}
   $vistas=new viewHTML();
+  }else{
+    require 'diccionario/MISURL.php';
+    header("Location:$URL[6]");
+  }
+}
+  
 ?>
