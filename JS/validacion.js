@@ -26,7 +26,6 @@ function validarData(datos) {
     if (hereNot()) {
       alert("BIENVENIDE "+datos.nombre);
     }
-   
   }
 
 }

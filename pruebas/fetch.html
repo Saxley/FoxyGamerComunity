@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="" content="">
+  <title></title>
+</head>
+<body>
+  <center><button onclick="traer()">Traer texto</button></center>
+  <div id="contenido"></div>
+  <script language="javaScript">
+    let contenido = document.getElementById('contenido')
+    const ur="http://localhost:8080/pruebas/texto.php"
+    function traer() {
+      fetch(ur)
+      .then(function(response) {
+        return response.json()
+
+        .then(function(response) {
+          let objeto=response;
+          contenido.innerHTML=objeto.text;
+        });
+
+      })
+      }
+    </script>
+  </body>
+</html>

@@ -137,6 +137,19 @@
   text-align: center;
   transform: translate(0,100%);
 }
+/*RIGTH*/
+.alertaG{
+  background-color: #F1C40F;
+  width: 100%;
+  height: 20px;
+  color:black;
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  transform: translate(0,-40%);
+}
 
 /*Recuperar*/
 .fondo{

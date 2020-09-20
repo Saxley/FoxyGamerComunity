@@ -29,6 +29,8 @@ if($start){
     require 'diccionario/MISURL.php';
     header("Location:$URL[6]");
   }
-}
   
+}else{
+$vistas=new viewHTML();
+}
 ?>

@@ -85,5 +85,36 @@ class Registros {
     }
     mysqli_close($conn);
   }
+  
+  
+  /**/
+  public function changePassword($id,$newPass){
+    return false;
+  }
+  
+  public function questSecurity($quest){
+    
+  }
+  public function questSecurityAnswer($answer){
+    
+  }
+  
+  public function tokenMaker(){
+    
+  }
+  
+  public function getToken(){
+    
+  }
+  
+  public function getQuestion(){
+    
+  }
+  
+  public function getAnswerQuest(){
+    
+  }
+  
 }
+
 ?>
