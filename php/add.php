@@ -3,12 +3,13 @@ include_once 'clases/claseRegistro.php';
 
 //CREAMOS nuestro objeto sesiom y hacemos variables locales los datos ingresados.
 $nuevoRegistro=new Registros();
+$nick=$_POST['nombre'];
 $email = $_POST['correo'];
 $password =$_POST['contraseñaVerify'];
 $llave = $_POST['llave'];
 
 
-echo $nuevoRegistro -> newRegistro($email,$password,$llave);
+echo $nuevoRegistro -> newRegistro($email,$password,$llave,$nick);
 /*
 NOTA:AGREGAR EL ENCRYPTADO DE CONTRASEÑA,AGREGAR MAS CAMPOS A LA BASE DE DATOS, REVISAR QUE EL USUARIO POR REGISTRAR NO EXISTA YA EN MI BASE DE DATOS.
 
