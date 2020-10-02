@@ -27,7 +27,8 @@ class soporte {
       </pre> 
     </div>";
     }
-    $this->message($UserCompany, $PassCompany, $email, $user, $message);
+    $envio=$this->message($UserCompany, $PassCompany, $email, $user, $message);
+    return $envio;
   }
 
   public function message($COMPANY, $Pass, $email, $user, $freeMessage) {
@@ -50,6 +51,12 @@ class soporte {
       $tittle="URGENTE";
       $freeMessage="<center><h1 style=\"color: red\">BANEADO</h1></center><br>$user <i>Haz respondido mal consecutivamente a tu pregunta de seguridad o el token por esta razón el cambio de contraseña se ha baneado por el día de hoy.</i><br><br><b>Si recuerdas tu contraseña podras iniciar sesión sin ninguna restricción</b>, este baneo solo es para el cambio de contraseña, si no reconoces esta actividad por favor notificanos.<p style=\"background-color:black;\"><a style=\"text-decoration:none;color:orange;\" href=\"http://localhost:8080/Reporte.php\">NO SOLICITE NINGIÚN CAMBIO DE CONTRASEÑA</a><hr style=\"width:100%; shadow\"></p><br><br><i>$user por tu comprensión muchas gracias y te invitamos a leer los terminos y condiciones de nuestra comunidad, sin nada mas que decir esperamos que tengas un lindo día UwU.</i>
       ";
+    }
+    if($freeMessage=="ALERTA"){
+      $tittle="IMPORTANTE";
+      $freeMessage="<center><h3 style='color:yellow;background-color:black;'>Hay actividad inusual con tu llave de seguridad</h3></center> <p> $user Por favor revisa que sea la llave correcta; <b>En caso de no recoconer esta actividad, notificanos de inmediato.</b></p>
+        <p style=\"background-color:black;\"><a style=\"text-decoration:none;color:orange;\" href=\"http://localhost:8080/Reporte.php\">NO RECONOZCO ESTA ACTIVIDAD</a><hr style=\"width:100%; shadow\"></p>
+        <br><br><i>$user por tu comprensión muchas gracias y te invitamos a leer los terminos y condiciones de nuestra comunidad, sin nada mas que decir esperamos que tengas un lindo día UwU.</i>";
     }
     if(strlen($freeMessage) < 6){
       $tittle="Solicitud de cambio de contraseña";

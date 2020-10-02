@@ -19,7 +19,7 @@ $start=$check->start($id,$password);
 $session;
 /*Evaluamos el resultado de la variable $start, si el resultado es TRUE llamaremos a 2 funciones de claseRegistro.php, primero a setCurrentUser() despues a getCurrentUser (para mas info revisar claseRegistros.php). 
 
---Despues creamos nuestro objeto $vistas cual nos redirigira(para mas info sobre el objeto revisar re.php)*/
+--Despues creamos nuestro objeto $vistas el cual nos redirigira(para mas info sobre el objeto revisar re.php)*/
 if($start){
   if(empty($nuevaSesion->getCurrentUser())){
   $nuevaSesion->setCurrentUser($email);

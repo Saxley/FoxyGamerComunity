@@ -1,22 +1,60 @@
 <?php
 include_once 'clases/claseRegistro.php';
-require 'diccionario/MISURL.php';
+include_once 'diccionario/MISURL.php';
 $usuario = $_POST['user'];
 $accion=$_POST['accion'];
 
+$open;
+/*emergencySesion:
+--Esta sesion nos ayuda a validar la llave del usuario y nos permite iniciar sesion. 
+¤¤¤Faltaria agregar una alerta que le diga al usuario que se  recomienda el cambio de su password.
 
+--Cuando la llave fue incorrecta por segunda ocasion, se envia un correo proporcionando información de la actividad. Y dandole al usuario la posibilidad de reportar una actividad inusual.*/
+function emergencySesion(){
+  global $open;
+  if(!$open){
+  $open=true;
+  }
+  if($_POST["id"]){
+    global $usuario;
+    $id=$_POST["id"];
+    $inicio=new Registros();
+    $start=$inicio->sesionEmergencia($id,$usuario);
+    if($start){
+      include_once 'clases/claseSesiones.php';
+      $nuevaSesion=new Sesiones();
+      $session;
+      if(empty($nuevaSesion->getCurrentUser())){
+      global $URL;
+      $nuevaSesion->setCurrentUser($id);
+      $session=$nuevaSesion->getCurrentUser();
+      return $URL[1];
+      }
+    }else{
+      if($_POST['aviso']){
+        include_once 'clases/claseEnvios.php';
+        require 'intentoConexion.php';
+        $aviso=$_POST['aviso'];
+        if($aviso==1){
+        $getMAIL="SELECT nick,email,id FROM datosInicio WHERE id='$id'";
+        $consulta= mysqli_query($conn,$getMAIL);
+        $row = mysqli_fetch_array($consulta);
+        $emailDestino=$row['email'];
+        $nick=$row['nick'];
+          
+        $sendAviso=new soporte('ALERTA','','',$emailDestino,$nick);
+        }
+      }
+      return 'llave incorrecta';
+    }
+ }
+}
 //_________________BANNEO__________________
 /*bloquear:
 Esta funcion crea un objeto de tipo registros y llama a su metodl baneo al cual le pasaremos los argumentos de id y tipo. Con tipo nos referimos al tipo de ban que tendra la cuenta.*/
 function bloquear($id,$tipo){
   $bann=new Registros();
   $bann->baneo($id,$tipo);
-}
-
-function getBloqueo($id){
-  $bann=new Registros();
-  $bann->getBann($id);
-  return $bann;
 }
 
 //__________CREA Y EVALUA TOKEN___________
@@ -48,12 +86,21 @@ function validarToken($id){
 
 //_____________BUSQUEDA ID________________
 /*buscarId:
---Crea un objeto Registros y llama a el metodo viewRegistro el cual nos devuelve el id segun el correo o el nick ingresado*/
+--Crea un objeto Registros y llama a el metodo viewRegistro el cual nos devuelve el id segun el correo o el nick ingresado si el usuario tiene ban no regresara el id almenos que ingrese por llave*/
 function buscarId(){
   global $usuario;
+  global $open;
   $buscar=new Registros();
   $id=$buscar->viewRegistro($usuario);
-  return $id;
+  if(!$id){
+   return $id;
+  }else{ 
+  $update=$buscar->deleteBann($id);
+  if($buscar->getBann($id) && !$open && !$update){
+    $id='baneado';
+   }
+   return $id;
+  }
 }
 //_______PREGUNTAS Y RESPUESTAS____________
 /*getQuest:
@@ -163,6 +210,7 @@ if (empty($usuario)) {
       ### ACCION A HACER        ###*/
     case "llave":
       $message["text"]="Ingresa tu nick";
+      emergencySesion();
       $id=buscarId();
       $message["id"]=$id;
       break;
@@ -205,7 +253,11 @@ if (empty($usuario)) {
       °°°JSON CONTAIN:°°°
       ### ACCION A HACER ###*/
     case "intoLlave":
+      $id=$_POST["id"];
+      
+      $res=emergencySesion();
       $message["text"]="Bienvenido";
+      $message["link"]=$res;
       break;
 //_____________CASE LUZ VERDE______________
     
@@ -230,4 +282,3 @@ if (empty($usuario)) {
 //_________________PRINT__________________
 echo  $message;
 ?>
-      

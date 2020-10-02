@@ -1,4 +1,14 @@
-
+.icon{
+  margin: none;
+  margin-right: 24%;
+}
+.zorro{
+  width:40%;
+  height:50%;
+  padding-left: 30%;
+  padding-right: 30%;
+  margin: none;
+}
 .contenedor{
   box-sizing:border-box;
   background-color: black;

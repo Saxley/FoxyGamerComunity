@@ -1,7 +1,7 @@
 <?php
 include_once 'clases/claseRegistro.php';
 
-//CREAMOS nuestro objeto sesiom y hacemos variables locales los datos ingresados.
+//CREAMOS nuestro objeto sesion y hacemos variables locales los datos ingresados.
 $nuevoRegistro=new Registros();
 $nick=$_POST['nombre'];
 $email = $_POST['correo'];

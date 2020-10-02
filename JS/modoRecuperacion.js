@@ -12,7 +12,8 @@ let res = document.getElementById("respuesta");
 let idUser;
 //marginError : Nos da un margen de error
 let marginError=0;
-
+//aviso  :  Nos ayuda a notificar al usuario cuando su llave es incorrecta por segunda ocasion.
+let aviso="enviar";
 
 //________________MESSAGES_________________
 /*Arreglo que almacena los mensajes a mostrar*/
@@ -151,6 +152,11 @@ function envio(e) {
   if(marginError==2 || marginError==3){
   datos.append("tipo",1);
   }
+  if(aviso=="enviando"){
+    datos.append("aviso",1);
+    aviso="enviado";
+  }
+  
   const url = "http://localhost:8080/php/recuperar.php";
 
   fetch(url, {
@@ -162,6 +168,7 @@ function envio(e) {
     data = response.json()
     
     .then(data => {
+    
       if (Boolean(data.text)) {
         switch(data.text){
 //_________________________________________
@@ -169,12 +176,16 @@ function envio(e) {
         case "Ingresa tu nick":
           idUser=data.id;
           if(Boolean(idUser)){
-            if(getMethod()=="llave"){
-             setMethod("intoLlave");
-             showMessage(3,20,28);
+            if(idUser!='baneado'){
+              if(getMethod()=="llave"){
+               setMethod("intoLlave");
+               showMessage(3,20,28);
+              }else{
+               setMethod("intoEmail");
+               showMessage(1,20,28);
+              }
             }else{
-             setMethod("intoEmail");
-             showMessage(1,20,28);
+               showMessage(2,26,27);
             }
           }else{
            showMessage(2,10,27);
@@ -220,24 +231,37 @@ function envio(e) {
           marginError=0;
           showMessage("",26,27);
            alert("Por seguridad se bloquearon los intentos de cambiar contraseña para mas información lee los terminos y condiciones.");
-          setTimeout(function() {
           window.location="index.php";
-          }, 100);
           break;
 //_________________________________________
 //iniciar sesion con el usuario y la llave
         case "Bienvenido":
-           res.innerHTML = strings[20];
+           if(data.link=="llave incorrecta"){
+             setMethod("intoLlave");
+             showMessage("",9,27);
+             if(aviso=="enviar"){
+             aviso="enviando";
+             }else{
+               aviso="final";
+             }
+           }else{
+             showMessage("",20,28);
+             window.location=data.link;
+           }
           break;
-
 //_________________________________________
 //Realizar pregunta seguridad
         case "Recibido":
           strings[15]=data.quest;
           if(!Boolean(idUser)){
+            if(data.id!='baneado'){
             idUser=data.id;
+            }else{
+            showMessage("",26,27);
+            break;
+            }
           }
-          if(Boolean(idUser)>0 || data.tok=='Token recibido'){
+        if(Boolean(idUser)>0 || data.tok=='Token recibido'){
             setMethod("pregunta");
            if(data.tok=='Token recibido'){
             showMessage(15,18,28);

@@ -1,7 +1,7 @@
 <?php
 //AQUI VAN MIS URL QUE USARE PARA NAVEGAR.
 $URL=array ();
-
+$URL[0]='http://localhost:8080/Bienvenida.html';
 $URL[1]= 'http://localhost:8080/Home.html';
 
 $URL[2]= 'http://localhost:8080/signIn.html';
