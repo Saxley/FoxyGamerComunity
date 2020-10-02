@@ -198,15 +198,38 @@ class Registros{
   /*equalToken:
   --Esta funcion solicita el token a la base de datos con la función getToken y lo compara con el token que el usuario ingrese, si son iguales manda palomita verde y borra la solicitud del token. En caso contrario de la comparacion manda false*/
   public function equalToken($id,$token) {
+    $TOT=$this->timeOutToken($id);
     $tokenTemp=$this->getToken($id);
     $token=md5($token);
-    if($tokenTemp==$token){
+    if($tokenTemp==$token && !$TOT){
       $deleteAddToken = "UPDATE datosInicio set addToken='0' where id='$id'";
       $setToken = $this->Conectar($deleteAddToken);
     
       $deleteToken = "UPDATE token set token='' where id_user='$id'";
       $setToken = $this->Conectar($deleteToken);
     
+      return true;
+    }else{
+      return false;
+    }
+  }
+  /*timeOutToken:
+  Esta funcion borrara el token*/
+  private function timeOutToken($id){
+    require 'intentoConexion.php';
+    $consulta="SELECT id_user,time FROM token WHERE id_user=$id";
+    $ejecucion=mysqli_query($conn,$consulta);
+    $row = mysqli_fetch_array($ejecucion);
+    $time=$row['time'];
+    $date=new fecha(); 
+    $timeNow=$date->fechaServer();
+    $horaNow=$date->digital($timeNow[1]);
+    $horaToken=$date->digital($time);
+    if($horaNow>$horaToken+3000){
+      $deleteAddToken = "UPDATE datosInicio set addToken='0' where id='$id'";
+      $setToken = $this->Conectar($deleteAddToken);
+      $deleteToken = "UPDATE token set token='' where id_user='$id'";
+      $setToken = $this->Conectar($deleteToken);
       return true;
     }else{
       return false;
@@ -231,8 +254,11 @@ class Registros{
     $setToken = $this->Conectar($consulta);
     
     if ($setToken) {
+      $date=new fecha();
+      $hora=$date->fechaServer();
+      $h=$hora[1];
       $tokenEnc=md5($token);
-      $consulta = "UPDATE token set token='$tokenEnc' where id_user='$id'";
+      $consulta = "UPDATE token set token='$tokenEnc', time='$h' where id_user='$id'";
       $setToken = $this->Conectar($consulta);
       if ($setToken) {  
         include_once 'claseEnvios.php';
@@ -249,10 +275,9 @@ class Registros{
     } else {
       return false;
     }
-    
   mysqli_close($conn);
   }
-
+  
   
 //________________BANEOS__________________
   /*baneo:
@@ -390,7 +415,7 @@ class fecha{
   }
   /*getFecha:
   --Devuelve la fecha en formato date para mariadb*/
-  public function getFecha($date){
+  private function getFecha($date){
     $day= $date['mday'];
     $month= $date['mon'];
     $year= $date['year']; 
@@ -400,7 +425,7 @@ class fecha{
   }
   /*getHora:
   --Devuelve la hora como una cadena*/
-  public function getHora($date){
+  private function getHora($date){
     $seconds= $date['seconds'];
     $minutes= $date['minutes'];
     $hours= $date['hours']; 

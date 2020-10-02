@@ -13,4 +13,10 @@ $URL[4]= 'http://localhost:8080/logIn.html';
 $URL[5]='http://localhost:8080/re.php';
 
 $URL[6]='http://localhost:8080/Error.html';
+
+$URL[7]='http://localhost:8080/RegistreContinue.php';
+
+$URL[8]='http://localhost:8080/Reporte.php';
+
+
 ?>
