@@ -1,6 +1,6 @@
 /*Asinc:
 --Esta clase nos permite trabajar con fetch, enviar y recibir informacion del servidor.*/
-export default class Asinc {
+export default class Asinc{
   /*enviar:
   --Recibe una url,un metodo de envio,el id del formulario a enviar, el id de donde se va recibir la info y el id del usuario,esto último es para almacenar el id en caso de que sea necesario buscarlo.*/
   enviar(url, metodo, idformulario,idMessage,idUser) {

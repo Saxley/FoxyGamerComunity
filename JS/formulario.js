@@ -1,7 +1,7 @@
 //revisar los archivos desde donde se importo
 import ObjetozStyle from "./clasesObjetos.js";
 import Asinc from "./clasesAsinc.js";
-
+import {analisis} from "./clasesAnalisis.js";
 
 document.body.className="fondo";
 /*Creamos un objeto de tipo ObjetozStyle.
@@ -13,6 +13,7 @@ document.body.className="fondo";
 6.-Agregamos un listener al boton.
 7.-Creamos un nuevo objeto de tipo Asinc.
 8.-Llamamos a su metodo enviar y le pasamos los atributos que nos solicita.*/
+const textBoxAnalisis=new analisis();
 const object=new ObjetozStyle();
 let div=object.crear("div","contenedor");
 let formulario=object.crear("form","Luisito");
@@ -40,22 +41,24 @@ btn.before(idUser);
 btn.type="submit";
 textBox.setAttribute("name","formInput");
 let conta=0;
+
 btn.addEventListener("click", me => {
-  input.value=labelBox.innerHTML;
-  if(input.value=="Usuario no encontrado"){
+  textBox.value=textBoxAnalisis.analisisCampo(textBox.value);
+   input.value=labelBox.innerHTML;
+    if(input.value=="Usuario no encontrado" || input.value=="porfavor ingresa informacion"){
     input.value="nick";
   }
-  if(input.value=="¡Registrado con exito!" && conta==0){
+    if(input.value=="¡Registrado con exito!" && conta==0){
     conta=5;
     alert("Usted ya configuro su cuenta. Si quiere modificar su cuenta le invitamos a realizarlo desde configuraciones. \n1.-Inicia Sesion.\n2.-Vaya a su perfil.\n3.-Busque el menú configuraciones.\n4.-Busque mis datos.\n5.-Busque actualizar datos.")
   }
-  if(input.value=="numero_celular"){
+   if(input.value=="numero_celular"){
     alert("Acontinuacion se te solicitaran 2 preguntas y 2 respuestas, esto nos ayudara en caso de que olvides tu contraseña, porfavor coloca preguntas que solo tu sepas la respuesta");
   }
-  if(input.value=="Pregunta de seguridad para cambio de contraseña y/o llave" || input.value=="Respuesta"){
+   if(input.value=="Pregunta de seguridad para cambio de contraseña y/o llave" || input.value=="Respuesta"){
     conta++;
   }
-  switch(conta){
+   switch(conta){
       case 1:
       input.value="questSecurity";
       break;
@@ -78,9 +81,9 @@ btn.addEventListener("click", me => {
       window.location="index.php";
       break;
     }
-  setTimeout(function() {
-  textBox.value="";
-  }, 100);
+   setTimeout(function() {
+   textBox.value="";
+   }, 100);
 });
 
 const saludo=new Asinc();
